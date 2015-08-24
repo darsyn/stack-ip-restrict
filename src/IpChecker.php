@@ -123,7 +123,7 @@ abstract class IpChecker implements HttpKernelInterface
                 $ipAddress = new IP($ipAddress);
                 if ($ipAddress->inRange(
                     $clientIp,
-                    max($ipAddress->isVersion(IP::VERSION_4) ? $cidr + 96 : $cidr, 128)
+                    min($ipAddress->isVersion(IP::VERSION_4) ? $cidr + 96 : $cidr, 128)
                 )) {
                     return true;
                 }
