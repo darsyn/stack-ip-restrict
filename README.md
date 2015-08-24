@@ -39,7 +39,6 @@ The **IpRestrict** HTTP Kernel middleware is compatible with [StackPHP](http://s
 ```php
 <?php
 
-use Darsyn\Stack\IpRestrict\Blacklist;
 use StackPHP\Builder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
