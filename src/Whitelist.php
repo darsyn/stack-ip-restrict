@@ -3,6 +3,7 @@ namespace Darsyn\Stack\IpRestrict;
 
 use Darsyn\IP\IP;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * Blacklist
@@ -20,7 +21,7 @@ final class Whitelist extends IpChecker
      * @param  boolean $catch
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
+    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
         $clientIp = new IP($request->getClientIp());
         if (!$this->doesIpAddressMatch($clientIp)) {

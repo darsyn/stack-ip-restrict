@@ -30,6 +30,7 @@ abstract class IpChecker implements HttpKernelInterface
      * @var string
      */
     private $message;
+
     /**
      * @access private
      * @var integer
@@ -72,7 +73,7 @@ abstract class IpChecker implements HttpKernelInterface
      * @param boolean $catch
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
+    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
     {
         return $this->app->handle($request, $type, $catch);
     }
