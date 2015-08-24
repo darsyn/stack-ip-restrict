@@ -1,0 +1,36 @@
+{
+    "name": "darsyn/stack-ip-restrict",
+    "description": "HTTP Kernel middleware for restriction applications, both blacklisting and whitelisting, from IP ranges.",
+    "license": "MIT",
+    "keywords": ["library", "stack", "middleware", "ip", "blacklist", "whitelist", "ip", "ipv4", "ipv6"],
+    "type": "library",
+    "homepage": "https://github.com/darsyn/stack-ip-restrict",
+    "authors": [
+        {
+            "name": "Zander Baldwin",
+            "email": "hello@zanderbaldwin.com",
+            "homepage": "http://zanderbaldwin.com/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Darsyn\\Stack\\IpRestrict\\": "src/"
+        }
+    },
+    "require": {
+        "darsyn/ip": "~2.0",
+        "symfony/http-kernel": "~2.3"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Darsyn\\Stack\\IpRestrict\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "mockery/mockery": "~0.9",
+        "humbug/humbug": "*"
+    }
+}
