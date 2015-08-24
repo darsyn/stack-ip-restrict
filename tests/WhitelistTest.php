@@ -141,4 +141,44 @@ class WhitelistTest extends \PHPUnit_Framework_TestCase
         $response = $stackedApp->handle($request);
         $this->assertSame(403, $response->getStatusCode());
     }
+
+    /**
+     * Test: It Returns 200 When Invalid IP Addresses Are Listed
+     *
+     * @test
+     * @access public
+     * @return void
+     */
+    public function itReturns403WhenInvalidIpAddressesAreListed()
+    {
+        $stackedApp = new Whitelist($this->kernel, array('list', 'of', 'invalid', 'ip', 'addresses'));
+        $request = m::mock('Symfony\Component\HttpFoundation\Request', function ($mock) {
+            $mock->shouldReceive('getClientIp')->once()->andReturn('12.34.56.78');
+        });
+        $response = $stackedApp->handle($request);
+        $this->assertSame(403, $response->getStatusCode());
+    }
+
+    /**
+     * Test: It Returns A Custom Response When Set and IP Addresses Do Not Match
+     *
+     * @test
+     * @access public
+     * @return void
+     */
+    public function itReturnsACustomResponseWhenSetAndIpAddressesDoNotMatch()
+    {
+        $statusCode = 402;
+        $customResponse = m::mock('Symfony\Component\HttpFoundation\Response', function ($mock) use ($statusCode) {
+            $mock->shouldReceive('getStatusCode')->once()->andReturn($statusCode);
+        });
+
+        $stackedApp = new Whitelist($this->kernel, array('12.34.56.78'));
+        $stackedApp->setAccessDeniedResponse($customResponse);
+        $request = m::mock('Symfony\Component\HttpFoundation\Request', function ($mock) {
+            $mock->shouldReceive('getClientIp')->once()->andReturn('87.65.43.21');
+        });
+        $response = $stackedApp->handle($request);
+        $this->assertSame($statusCode, $response->getStatusCode());
+    }
 }
