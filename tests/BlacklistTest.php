@@ -65,7 +65,7 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
             array('43f7:5937:c939:30ef:d710:185a:2c8d:c055', array(
                 '0197:9d87:df58:866e:1d3c:bc5d:29dd:110e/12',
                 '1b2f:f066:53d9:f87c:6552:d959:ee19:f184',
-                '8f49:1034:e156:6d:924b:8485::/101',
+                '43f7:5937:c93a:6d:924b:8485::/47',
             )),
         );
     }
@@ -92,7 +92,7 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
             array('d7c8:9855:70ac:756e::dc9:6856', array(
                 'd789:c67f:6a5c:3b5a:ca74:8f3b:50b2:fadd/45',
                 '34f6:ed98:10be:d265:17ff:f062:fd70:a976',
-                'd7c8:9855:70ac:756e:2691:9cbb:dc9:6856/82',
+                'c7c8:9855:70ac:756e:2691:9cbb:dc9:6856/82',
             )),
             array('43f7:5937:c939:30ef:d710:185a:2c8d:c055', array(
                 '0197:9d87:df58:866e:1d3c:bc5d:29dd:110e/12',
