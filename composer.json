@@ -32,5 +32,8 @@
         "phpunit/phpunit": "~4.8",
         "mockery/mockery": "~0.9",
         "humbug/humbug": "*"
+    },
+    "suggest": {
+        "stack/builder": "for building stacked middleware apps."
     }
 }

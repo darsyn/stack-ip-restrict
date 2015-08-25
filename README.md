@@ -1,4 +1,4 @@
-# IP Address [![Build Status](https://travis-ci.org/darsyn/ip.svg?branch=master)](https://travis-ci.org/darsyn/ip)
+# IP Address [![Build Status](https://travis-ci.org/darsyn/stack-ip-restrict.svg?branch=master)](https://travis-ci.org/darsyn/ip)
 
 HTTP Kernel middleware for restriction applications, both blacklisting and whitelisting, from IP ranges.
 
@@ -26,6 +26,11 @@ use Symfony\Component\HttpKernel\Kernel;
 $kernel = new Kernel();
 
 $stackedApp = new Blacklist($kernel, $listedIpAddresses);
+// Set a custom response object to send when access is denied, if you so wish:
+$stackedApp->setAccessDeniedResponse(new Response(
+    'Uh-uh, no website until you pay up!',
+    402
+));
 
 $request = Request::createFromGlobals();
 $response = $stackedApp->handle($request);
@@ -39,13 +44,12 @@ The **IpRestrict** HTTP Kernel middleware is compatible with [StackPHP](http://s
 ```php
 <?php
 
-use StackPHP\Builder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
 $kernel = new Kernel();
 
-$stackedApp = (new MiddlewareBuilder)
+$stackedApp = (new Stack\Builder)
     ->push('Darsyn\Stack\IpRestrict\Blacklist', $listedIpAddresses)
     // All your other middlewares...
     ->resolve($kernel);
