@@ -44,13 +44,12 @@ The **IpRestrict** HTTP Kernel middleware is compatible with [StackPHP](http://s
 ```php
 <?php
 
-use StackPHP\Builder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
 $kernel = new Kernel();
 
-$stackedApp = (new MiddlewareBuilder)
+$stackedApp = (new Stack\Builder)
     ->push('Darsyn\Stack\IpRestrict\Blacklist', $listedIpAddresses)
     // All your other middlewares...
     ->resolve($kernel);
