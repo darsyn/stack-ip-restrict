@@ -60,6 +60,29 @@ $response->send();
 $kernel->terminate();
 ```
 
+## Valid Datasets
+
+The IP Restrict middleware tries to accept any PHP data type that equates to a set of
+strings. This includes arrays, traversable objects, callable generators, and even files
+(using `SplFileObject` with an IP address per line).
+
+```php
+<?php
+
+$listedIpAddresses = ['127.0.0.1', '192.168.0.1/16'];
+
+// IpAddressContainer instanceof \Iterator
+$listedIpAddresses = new IpAddressContainer;
+
+// N.B. Callables must not require any parameters.
+$listedIpAddresses = function () {
+    yield '127.0.0.1';
+    yield '192.168.0.1/16';
+};
+
+$listedIpAddresses = new \SplFileObject('/path/to/file-with-one-ip-address-per-line.txt');
+```
+
 ## License
 
 Please see the [separate license file](LICENSE.md) included in this repository for a full copy of the MIT license,

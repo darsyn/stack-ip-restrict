@@ -59,9 +59,37 @@ abstract class IpChecker implements HttpKernelInterface
         $code = 403
     ) {
         $this->app = $app;
-        $this->ipAddresses = $ipAddresses;
+        $this->ipAddresses = $this->parseDataSet($ipAddresses);
         $this->message = $message;
         $this->code = $code;
+    }
+
+    /**
+     * Parse Data Set
+     *
+     * @access public
+     * @param mixed $data
+     * @return \Traversable
+     */
+    private function parseDataSet($data)
+    {
+        if (is_callable($data)) {
+            $reflect = new \ReflectionFunction($data);
+            if (method_exists($reflect, 'isGenerator')
+                && $reflect->isGenerator()
+                && $reflect->getNumberOfRequiredParameters()
+            ) {
+                // We want the Generator instance itself, not the callable wrapper.
+                $data = $data();
+            }
+        }
+        if (is_array($data)) {
+            $data = new \ArrayInterator($data);
+        }
+        if (!$data instanceof \Traversable) {
+            throw new \InvalidArgumentException('The list of IP addresses must be a type that contains a set of data.');
+        }
+        return $data;
     }
 
     /**
