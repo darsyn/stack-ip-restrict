@@ -77,7 +77,7 @@ abstract class IpChecker implements HttpKernelInterface
             $reflect = new \ReflectionFunction($data);
             if (method_exists($reflect, 'isGenerator')
                 && $reflect->isGenerator()
-                && $reflect->getNumberOfRequiredParameters()
+                && $reflect->getNumberOfRequiredParameters() === 0
             ) {
                 // We want the Generator instance itself, not the callable wrapper.
                 $data = $data();
