@@ -21,7 +21,7 @@
     },
     "require": {
         "darsyn/ip": "~2.0",
-        "symfony/http-kernel": "~2.3"
+        "symfony/http-kernel": "^2.8|^3.0"
     },
     "autoload-dev": {
         "psr-4": {
