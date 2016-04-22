@@ -14,6 +14,8 @@ composer require darsyn/stack-ip-restrict
 
 Although this library *should* work with PHP 5.3, it is not officially supported since it reached end-of-life in 2014.
 
+As of version `2.0.0`, this library supports Symfony 3 but as a result the lowest version it supports is `2.8.0`.
+
 ## Example Usage
 
 ```php
