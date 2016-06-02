@@ -1,4 +1,5 @@
 <?php
+
 namespace Darsyn\Stack\IpRestrict;
 
 use Darsyn\IP\IP;
@@ -14,31 +15,26 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 abstract class IpChecker implements HttpKernelInterface
 {
     /**
-     * @access private
      * @var \Symfony\Component\HttpKernel\HttpKernelInterface
      */
     private $app;
 
     /**
-     * @access private
      * @var array
      */
     private $ipAddresses;
 
     /**
-     * @access private
      * @var string
      */
     private $message;
 
     /**
-     * @access private
      * @var integer
      */
     private $code;
 
     /**
-     * @access private
      * @var \Symfony\Component\HttpFoundation\Response
      */
     private $accessDeniedResponse;
@@ -46,11 +42,10 @@ abstract class IpChecker implements HttpKernelInterface
     /**
      * Constructor
      *
-     * @access public
-     * @param \Symfony\Component\HttpKernel\HttpKernelInterface $app
-     * @param array $ipAddresses
-     * @param string $message
-     * @param integer $code
+     * @param  \Symfony\Component\HttpKernel\HttpKernelInterface $app
+     * @param  array $ipAddresses
+     * @param  string $message
+     * @param  integer $code
      */
     public function __construct(
         HttpKernelInterface $app,
@@ -67,10 +62,9 @@ abstract class IpChecker implements HttpKernelInterface
     /**
      * Handle Request
      *
-     * @access public
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param integer $type
-     * @param boolean $catch
+     * @param  \Symfony\Component\HttpFoundation\Request $request
+     * @param  integer $type
+     * @param  boolean $catch
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
@@ -81,7 +75,6 @@ abstract class IpChecker implements HttpKernelInterface
     /**
      * Get: Access Denied Response
      *
-     * @access public
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getAccessDeniedResponse()
@@ -95,8 +88,7 @@ abstract class IpChecker implements HttpKernelInterface
     /**
      * Set: Access Denied Response
      *
-     * @access public
-     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param  \Symfony\Component\HttpFoundation\Response $response
      * @return void
      */
     public function setAccessDeniedResponse(Response $response)
@@ -107,7 +99,6 @@ abstract class IpChecker implements HttpKernelInterface
     /**
      * Does IP Address Match?
      *
-     * @access protected
      * @param  \Darsyn\IP\IP $clientIp
      * @return boolean
      */
