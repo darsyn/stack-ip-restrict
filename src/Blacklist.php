@@ -1,4 +1,5 @@
 <?php
+
 namespace Darsyn\Stack\IpRestrict;
 
 use Darsyn\IP\IP;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Darsyn\Stack\IpRestrict\Tests;
 
 use Darsyn\Stack\IpRestrict\Blacklist;
@@ -7,21 +8,18 @@ use Mockery as m;
 class BlacklistTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @access private
-     * @var HttpKernelInterface
+     * @var \Symfony\Component\HttpKernel\HttpKernelInterface
      */
     private $kernel;
 
     /**
-     * @access private
-     * @var HttpKernelInterface
+     * @var \Symfony\Component\HttpKernel\HttpKernelInterface
      */
     private $stackedApp;
 
     /**
      * Test Setup
      *
-     * @access public
      * @return void
      */
     public function setUp()
@@ -41,7 +39,6 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
     /**
      * Data Provider: Matching IP Addresses
      *
-     * @access public
      * @return array
      */
     public function getMatchingIpAddresses()
@@ -73,7 +70,6 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
     /**
      * Data Provider: Non-matching IP Addresses
      *
-     * @access public
      * @return array
      */
     public function getNonMatchingIpAddresses()
@@ -107,9 +103,8 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @dataProvider getMatchingIpAddresses
-     * @access public
-     * @param string $clientIp
-     * @param array $ipAddresses
+     * @param  string $clientIp
+     * @param  array $ipAddresses
      * @return void
      */
     public function itReturns403ForListedIpAddresses($clientIp, array $ipAddresses)
@@ -127,9 +122,8 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      * @dataProvider getNonMatchingIpAddresses
-     * @access public
-     * @param string $clientIp
-     * @param array $ipAddresses
+     * @param  string $clientIp
+     * @param  array $ipAddresses
      * @return void
      */
     public function itReturns200ForNonListedIpAddresses($clientIp, array $ipAddresses)
@@ -146,7 +140,6 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
      * Test: It Returns 200 When Invalid IP Addresses Are Listed
      *
      * @test
-     * @access public
      * @return void
      */
     public function itReturns200WhenInvalidIpAddressesAreListed()
@@ -163,7 +156,6 @@ class BlacklistTest extends \PHPUnit_Framework_TestCase
      * Test: It Returns A Custom Response When Set and IP Addresses Match
      *
      * @test
-     * @access public
      * @return void
      */
     public function itReturnsACustomResponseWhenSetAndIpAddressesMatch()
